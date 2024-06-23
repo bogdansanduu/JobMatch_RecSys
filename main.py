@@ -19,11 +19,13 @@ app = FastAPI()
 PORT = int(os.getenv("PORT"))
 
 CORS_ORIGIN = os.getenv("CORS_ORIGIN");
+CORS_ORIGIN2 = os.getenv("CORS_ORIGIN2");
 
 
 origins = [
     "http://localhost",
     CORS_ORIGIN,
+    CORS_ORIGIN2
 ]
 
 app.add_middleware(
