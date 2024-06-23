@@ -85,14 +85,14 @@ async def startup_event():
     print("Models trained successfully")
 
 
-@app.post("/retrain/")
+@app.post("/retrain")
 async def retrain(secret_key: str = Depends(verify_secret_key)):
     global knn_model, scaler, features_scaled
     knn_model, scaler, features_scaled = train_model()
     return {"message": "Models retrained successfully"}
 
 
-@app.get("/getRecommendations/")
+@app.get("/getRecommendations")
 async def get_recommendations(query: JobQuery, secret_key: str = Depends(verify_secret_key)):
     global df, knn_model, features_scaled
     # Process user description for similarity
@@ -110,7 +110,7 @@ async def get_recommendations(query: JobQuery, secret_key: str = Depends(verify_
 
     return {"recommendations": nearest_jobs}
 
-@app.get("/test/")
+@app.get("/test")
 async def test(secret_key: str = Depends(verify_secret_key)):
     return {"message": "Test successful"}
 
